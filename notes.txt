@@ -1,0 +1,37 @@
+			
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+http://spritegen.website-performance.org/
+
+
+AddIcon theme/icons/blank.png ^^BLANKICON^^
+	AddIcon theme/icons/folder.png ^^DIRECTORY^^
+	AddIcon theme/icons/folder-home.png ..
+	
+	DefaultIcon theme/icons/default.png
+
+	
+	var newDoctype = document.implementation.createDocumentType(
+ 'html',
+ '-//W3C//DTD XHTML 1.0 Transitional//EN',
+ 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
+);
+
+document.doctype.parentNode.replaceChild(newDoctype,document.doctype);
+
+
+
+var nodeDoctype = document.implementation.createDocumentType(
+ 'html',
+ '-//W3C//DTD XHTML 1.0 Transitional//EN',
+ 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
+);
+if(document.doctype) {
+    document.replaceChild(nodeDoctype, document.doctype);
+} else {
+    document.insertBefore(nodeDoctype, document.childNodes[0]);
+}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
