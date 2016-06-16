@@ -3,13 +3,22 @@
     <head>
         <title>Apaxy 2</title>
         <link rel="stylesheet" href="chrome-extension://__MSG_@@extension_id__/view/style.css" type="text/css" />
-        <script src="chrome-extension://__MSG_@@extension_id__/view/jquery-2.1.4.js"></script>
-        <script src="chrome-extension://__MSG_@@extension_id__/view/helper.js"></script>
-        <script src="chrome-extension://__MSG_@@extension_id__/view/script.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
-        <div class="wrapper">
+        <div class="wrapper wrapper-tree">
+            <table id="indexlist">
+                <tr class="indexhead">
+                    <th class="indexcolicon"><img src="" alt="" /></th>
+                    <th class="indexcolname"><a href="#">Tree</a></th>
+                </tr>
+                <tr class="sample">
+                    <td class="indexcolicon"><img src="" alt="" /></td>
+                    <td class="indexcolname"><a href="#"></a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="wrapper wrapper-listing">
             <table id="indexlist">
                 <tr class="indexhead">
                     <th class="indexcolicon"><img src="" alt="" /></th>
@@ -17,15 +26,16 @@
                     <th class="indexcollastmod"><a href="#">Last modified</a></th>
                     <th class="indexcolsize"><a href="#">Size</a></th>
                 </tr>
-                <tr class="odd_even">
+                <tr class="sample">
                     <td class="indexcolicon"><img src="" alt="" /></td>
                     <td class="indexcolname"><a href="#"></a></td>
                     <td class="indexcollastmod"></td>
                     <td class="indexcolsize"></td>
                 </tr>
             </table>
-            <div class="block"></div>
         </div>
+        <span class="clear"></span>
+        <div class="block"></div>
         <div class="footer">
             <p><a href="https://github.com/VarunAgw/Apaxy-2">Apaxy 2</a> by <a href="https://www.varunagw.com">Varun Agrawal</a>. Based on <a href="https://github.com/AdamWhitcroft/Apaxy">Apaxy</a> by <a href="https://twitter.com/adamwhitcroft">Adam Whitcroft</a></p>
         </div>

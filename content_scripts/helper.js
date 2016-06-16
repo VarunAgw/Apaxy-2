@@ -1,3 +1,8 @@
+function is_directory_listing(content) {
+    return content.search("<title>Index of /") !== -1 &&
+            content.search("<h1>Index of /") !== -1;
+}
+
 function parse_document(content) {
     var output = [];
     $dom = $('<html>').html(content);
@@ -18,21 +23,26 @@ function parse_document(content) {
             content = $row.contents().eq(1).text().trim().split(/(^.*?(?=  ))|(\d+$)/);
             output.push({
                 Name: decodeURIComponent($row.find(">a").attr('href')).replace(/\/$/, ""),
+                Path: decodeURIComponent($row.find(">a").attr('href')),
                 IsDir: decodeURIComponent($row.find(">a").attr('href')).search(/\/$/) !== -1,
                 LastModified: content[1],
                 Size: content[1] == "-" ? "" : content[5],
             });
         });
     } else if (1 === $body.find(">pre").length && undefined === $body.attr("bgcolor")) {
-        // Apache (-HTMLTable +FancyIndexing)
+        // Apache (FancyIndexing -HTMLTable)
         $body.find(">pre").find("hr,:nth(0),:nth(1),:nth(2),:nth(3),:nth(4)").remove();
         $body.find(">pre").html($body.find(">pre").html().trim());
         $.each($body.find(">pre").html().split("\n"), function (index, row) {
             $row = $("<span>").html(row);
+            if ("[PARENTDIR]" === $row.find(">img").attr('alt')) {
+                return;
+            }
             content = $row.contents().eq(3).text().trim().split(/  /);
             output.push({
                 Icon: $row.find(">img").attr('src'),
                 Name: decodeURIComponent($row.find(">a").attr('href')).replace(/\/$/, ""),
+                Path: decodeURIComponent($row.find(">a").attr('href')),
                 IsDir: decodeURIComponent($row.find(">a").attr('href')).search(/\/$/) !== -1,
                 LastModified: content[0],
                 Size: content[1] == "-" ? "" : content[1],
@@ -41,10 +51,13 @@ function parse_document(content) {
 
     } else if (1 === $body.find(">ul").length) {
         // Apache (-HTMLTable -FancyIndexing)
-        $body.find(">ul>li").each(function (index, row) {
+        $body.find(">ul>li:not(:has(a:contains(Parent Directory)))").each(function (index, row) {
             output.push({
                 Name: decodeURIComponent($(row).find(">a").attr('href')).replace(/\/$/, ""),
+                Path: decodeURIComponent($(row).find(">a").attr('href')),
                 IsDir: decodeURIComponent($(row).find(">a").attr('href')).search(/\/$/) !== -1,
+                LastModified: "",
+                Size: "",
             });
         });
 
@@ -58,16 +71,19 @@ function parse_document(content) {
             output.push({
                 Icon: $row.eq(0).find(">img").attr('src'),
                 Name: decodeURIComponent($row.eq(1).find(">a").attr('href')).replace(/\/$/, ""),
+                Path: decodeURIComponent($row.eq(1).find(">a").attr('href')),
                 IsDir: decodeURIComponent($row.eq(1).find(">a").attr('href')).search(/\/$/) !== -1,
                 LastModified: $row.eq(2).text().trim(),
                 Size: $row.eq(3).text().trim() == "-" ? "" : $row.eq(3).text().trim(),
             });
         });
     }
+
+    output = sort_rows(output);
     return output;
 }
 
-function sort_by_directory(rows) {
+function sort_rows(rows) {
     return rows.sort(function (a, b) {
         if (a.IsDir && !b.IsDir) {
             return -1;
@@ -86,27 +102,6 @@ function sort_by_directory(rows) {
     });
 }
 
-function get_icon(type) {
-//    var file_types = JSON.parse(GM_getResourceText("file_types.json"));
-//    var sprite = JSON.parse(GM_getResourceText("icon_sprite.json"));
-//
-//    if (undefined !== file_types[type]) {
-//        return sprite.canvas.sprites.find(function (ob) {
-//            return ob.name == file_types[type];
-//        }).src;
-//    } else if (undefined !== sprite.canvas.sprites.find(function (ob) {
-//        return ob.name == type;
-//    })) {
-//        return sprite.canvas.sprites.find(function (ob) {
-//            return ob.name == type;
-//        }).src;
-//    } else {
-//        return sprite.canvas.sprites.find(function (ob) {
-//            return ob.name == "default";
-//        }).src;
-//    }
-}
-
 function get_extension(filename) {
     var extension = filename.match(/\.([a-z0-9]+)$/);
     if (null === extension) {
@@ -117,11 +112,19 @@ function get_extension(filename) {
     return extension;
 }
 
+function get_icon(type) {
+    if (undefined !== file_types[type]) {
+        return file_types[type] + ".png";
+    } else {
+        return "default" + ".png";
+    }
+}
+
+
 String.prototype.replaceAll = function (search, replacement) {
     var target = this;
     return target.split(search).join(replacement);
 };
-
 
 function get_resource(path) {
     return new Promise(function (resolve) {
