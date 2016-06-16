@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "Apaxy 2",
+    "description": "",
+    "version": "1.0.0",
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "js": ["jquery-2.1.4.js", "cs.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "web_accessible_resources": [
+        "view/*"
+    ]
+}
