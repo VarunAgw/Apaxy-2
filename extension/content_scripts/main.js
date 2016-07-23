@@ -85,7 +85,7 @@ if (is_directory_listing(document.documentElement.innerHTML)) {
                 $selection = $("table.focused .selected");
 
                 if (KeyCode(e, KeyCode.RETURN, /^c?$/)) {
-                    if (KeyCode(e, KeyCode.RETURN, "c")) {
+                    if (KeyCode(e, [], "c")) {
                         window.open($selection.find('a').prop('href'));
                     } else {
                         document.location = $selection.find('a').prop('href');
@@ -93,9 +93,9 @@ if (is_directory_listing(document.documentElement.innerHTML)) {
                     e.preventDefault();
                 }
 
-                if (KeyCode(e, KeyCode.TAB)) {
-                    if ("block" == $(".wrapper-tree").css("display")) {
-                        if (1 == $('.wrapper-listing table.focused').length) {
+                if (KeyCode(e, KeyCode.TAB, /^s?$/)) {
+                    if ("block" === $(".wrapper-tree").css("display")) {
+                        if (1 === $('.wrapper-listing table.focused').length) {
                             $('.wrapper-listing table.focused').removeClass("focused");
                             $(".wrapper-tree table").addClass("focused");
                             if (0 === $('.wrapper-tree table.focused tr.selected').length) {
@@ -109,7 +109,7 @@ if (is_directory_listing(document.documentElement.innerHTML)) {
                     }
                 }
 
-                if (KeyCode(e, [KeyCode.UP, KeyCode.DOWN])) {
+                if (KeyCode(e, [KeyCode.UP, KeyCode.DOWN], "")) {
                     if (KeyCode(e, KeyCode.UP) && $selection.prev("tr:has(td)").length !== 0) {
                         $selection.removeClass("selected").prev().addClass("selected");
                     }

@@ -3,42 +3,47 @@ if (typeof KeyCode == "undefined") {
      * A fancier way to parse JS keydown events
      * Author: Varun Agrawal <Varun@VarunAgw.com>
      * Source: https://gist.github.com/VarunAgw/935e8457d470fab222bf48bf0fc1c70d
-     * Version: 1.0
+     * Version: 1.2
+     * Last Updated: 23-July-2016
      * 
-     * @param {object} event
-     * @param {array|number} possibleKeyCodes Use single keycode or an array to match either of them
-     * @param {string|regex} modifiers Ctrl/Alt/Shift/Meta key that were pressed (Note: Order for matching is "casm")
+     * @param {object}             event:             Just forward the event
+     * @param {array|number}       possibleKeyCodes:  Use single keycode or an array of codes to match either of them
+     * @param {array|string|regex} possibleModifiers: Ctrl/Alt/Shift/Meta key that were pressed (Note: Order for matching is "casm")
      * @returns {Boolean}
      * 
+     * Note:
+     * - Use empty array [] or undefined to skip an argument
+     * - Missing parameter is always evaluated as true (i.e. it will match any event)
+     * 
      * Examples:
-     * KeyCode(e, KeyCode.NUMPAD0, "") // Numpad0 with no modifiers
-     * KeyCode(e, [KeyCode.NUMPAD0, KeyCode.NUMPAD1]) // Numpad0 or Numpad1 with no modifiers
-     * KeyCode(e, KeyCode.NUMPAD0, "c") // Numpad0 or Numpad1 with only Ctrl pressed
-     * KeyCode(e, KeyCode.NUMPAD0, "cs") // Numpad0 with only Ctrl and Shift pressed
-     * KeyCode(e, KeyCode.NUMPAD0, /^(c|a)$/) // Numpad0 or Numpad1 with only Ctrl or Alt pressed
-     * KeyCode(e, KeyCode.NUMPAD0, /^(c|a)s$/) // Numpad0 or Numpad1 with only (Ctrl or Alt) + Shift pressed
-     * KeyCode(e, KeyCode.CONTROL) // If only Ctrl is pressed
+     * KeyCode(e, KeyCode.NUMPAD0, "")                // Numpad0 with no modifiers
+     * KeyCode(e, [KeyCode.NUMPAD0, KeyCode.NUMPAD1]) // Numpad0 or Numpad1 with any modifiers
+     * KeyCode(e, KeyCode.NUMPAD0, "cs")              // Numpad0 with exactly Ctrl and Shift pressed
+     * KeyCode(e, [], "c")                            // Modifier Ctrl with any key pressed
+     * KeyCode(e, KeyCode.NUMPAD0, ["c", "a"])        // Numpad0 with either ctrl or alt, but not both
+     * KeyCode(e, KeyCode.NUMPAD0, /^(c|a)s$/)        // Numpad0 with only (Ctrl or Alt) + Shift pressed
+     * KeyCode(e, KeyCode.CONTROL)                    // If only Ctrl is pressed
+     * KeyCode(e)                                     // Match all events
      */
-    var KeyCode = function (event, possibleKeyCodes, modifiers) {
+    var KeyCode = function (event, possibleKeyCodes, possibleModifiers) {
         var res1 = true, res2 = true;
-        if (undefined !== possibleKeyCodes) {
-            if ("number" === typeof possibleKeyCodes) {
-                possibleKeyCodes = [possibleKeyCodes];
-            }
+
+        if ("number" === typeof possibleKeyCodes) {
+            res1 = (event.keyCode === possibleKeyCodes);
+        } else if (Array.isArray(possibleKeyCodes) && possibleKeyCodes.length > 0) {
             res1 = (possibleKeyCodes.indexOf(event.keyCode) !== -1);
         }
-        if (undefined === modifiers) {
-            modifiers = "";
-        }
-        var s = "";
-        s += event.ctrlKey ? "c" : "";
-        s += event.altKey ? "a" : "";
-        s += event.shiftKey ? "s" : "";
-        s += event.metaKey ? "m" : "";
-        if ("" === modifiers && "" !== s) {
-            res2 = false;
-        } else {
-            res2 = (s.match(modifiers) !== null);
+
+        var modifiers = "";
+        modifiers += (event.ctrlKey ? "c" : "") + (event.altKey ? "a" : "");
+        modifiers += (event.shiftKey ? "s" : "") + (event.metaKey ? "m" : "");
+
+        if ("string" === typeof possibleModifiers) {
+            res2 = (modifiers === possibleModifiers);
+        } else if (Array.isArray(possibleModifiers) && possibleModifiers.length > 0) {
+            res2 = (possibleModifiers.indexOf(modifiers) !== -1)
+        } else if ("undefined" !== typeof possibleModifiers && possibleModifiers.constructor === RegExp) {
+            res2 = (modifiers.match(possibleModifiers) !== null);
         }
 
         return (res1 && res2);
@@ -165,5 +170,4 @@ if (typeof KeyCode == "undefined") {
     for (var attrname in keys_DSATGVAS692sSds562) {
         KeyCode[attrname] = keys_DSATGVAS692sSds562[attrname];
     }
-
 }
