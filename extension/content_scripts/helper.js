@@ -5,9 +5,9 @@ function is_directory_listing(content) {
 
 function parse_document(content) {
     var output = [];
-    $dom = $('<html>').html(content);
-    $head = $dom.find(">head");
-    $body = $dom.find(">body");
+    var body = '<div id="body-mock">' + content.replace(/^[\s\S]*<body.*?>|<\/body>[\s\S]*$/ig, '') + '</div>';
+    var $body = $(body);
+    body = $body[0];
 
     if (1 == 2) {
 
