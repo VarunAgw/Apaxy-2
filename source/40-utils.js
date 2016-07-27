@@ -140,6 +140,18 @@ var utils = {
         } else {
             document.head.appendChild(s);
         }
+    },
+    scrollToElement: function (el) {
+        if (typeof jQuery === "function" && el instanceof jQuery) {
+            el = el[0];
+        }
+        if (!el) {
+            return false;
+        }
+        var rect = el.getBoundingClientRect();
+        if (!(rect.top >= 0 && rect.bottom <= window.innerHeight)) {
+            window.scrollTo(0, rect.top + window.pageYOffset - (window.innerHeight / 2));
+        }
     }
 };
 

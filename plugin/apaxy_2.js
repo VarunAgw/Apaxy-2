@@ -452,6 +452,18 @@ var utils = {
         } else {
             document.head.appendChild(s);
         }
+    },
+    scrollToElement: function (el) {
+        if (typeof jQuery === "function" && el instanceof jQuery) {
+            el = el[0];
+        }
+        if (!el) {
+            return false;
+        }
+        var rect = el.getBoundingClientRect();
+        if (!(rect.top >= 0 && rect.bottom <= window.innerHeight)) {
+            window.scrollTo(0, rect.top + window.pageYOffset - (window.innerHeight / 2));
+        }
     }
 };
 
@@ -579,6 +591,7 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
                         $('.wrapper-tree table.focused').removeClass("focused");
                         $(".wrapper-listing table").addClass("focused");
                     }
+                    utils.scrollToElement($('table.focused tr.selected'));
                     e.preventDefault();
                 }
             }
@@ -590,6 +603,7 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
                 if (KeyCode(e, KeyCode.DOWN) && $selection.next("tr:has(td)").length !== 0) {
                     $selection.removeClass("selected").next().addClass("selected");
                 }
+                utils.scrollToElement($('table.focused tr.selected'));
                 e.preventDefault();
             }
         });

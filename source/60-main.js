@@ -100,6 +100,7 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
                         $('.wrapper-tree table.focused').removeClass("focused");
                         $(".wrapper-listing table").addClass("focused");
                     }
+                    utils.scrollToElement($('table.focused tr.selected'));
                     e.preventDefault();
                 }
             }
@@ -111,6 +112,7 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
                 if (KeyCode(e, KeyCode.DOWN) && $selection.next("tr:has(td)").length !== 0) {
                     $selection.removeClass("selected").next().addClass("selected");
                 }
+                utils.scrollToElement($('table.focused tr.selected'));
                 e.preventDefault();
             }
         });
