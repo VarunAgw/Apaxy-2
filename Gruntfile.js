@@ -97,7 +97,10 @@ module.exports = function (grunt) {
         watch: {
             scripts: {
                 files: ['source/**/*'],
-                tasks: ['all']
+                tasks: ['default']
+            },
+            options: {
+                spawn: false
             }
         }
     });
@@ -108,5 +111,5 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('all', ['start', 'concat', 'uglify', 'sync']);
-    grunt.registerTask('default', ['start', 'concat', 'uglify']);
+    grunt.registerTask('default', ['start', 'concat']);
 };
