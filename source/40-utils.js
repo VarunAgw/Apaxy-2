@@ -38,7 +38,7 @@ var parser = {
                 content = $row.contents().eq(1).text().trim().split(/(^.*?(?=  ))|(\d+$)/);
                 output.push({
                     Name: decodeURIComponent($row.find(">a").attr('href')).replace(/\/$/, ""),
-                    Path: decodeURIComponent($row.find(">a").attr('href')),
+                    Path: $row.find(">a").attr('href'),
                     IsDir: decodeURIComponent($row.find(">a").attr('href')).search(/\/$/) !== -1,
                     LastModified: content[1],
                     Size: content[1] == "-" ? "" : content[5]
@@ -57,7 +57,7 @@ var parser = {
                 output.push({
                     Icon: $row.find(">img").attr('src'),
                     Name: decodeURIComponent($row.find(">a").attr('href')).replace(/\/$/, ""),
-                    Path: decodeURIComponent($row.find(">a").attr('href')),
+                    Path: $row.find(">a").attr('href'),
                     IsDir: decodeURIComponent($row.find(">a").attr('href')).search(/\/$/) !== -1,
                     LastModified: content[0],
                     Size: content[1] == "-" ? "" : content[1]
@@ -69,7 +69,7 @@ var parser = {
             $body.find(">ul>li:not(:has(a:contains(Parent Directory)))").each(function (index, row) {
                 output.push({
                     Name: decodeURIComponent($(row).find(">a").attr('href')).replace(/\/$/, ""),
-                    Path: decodeURIComponent($(row).find(">a").attr('href')),
+                    Path: $(row).find(">a").attr('href'),
                     IsDir: decodeURIComponent($(row).find(">a").attr('href')).search(/\/$/) !== -1,
                     LastModified: "",
                     Size: ""
@@ -86,7 +86,7 @@ var parser = {
                 output.push({
                     Icon: $row.eq(0).find(">img").attr('src'),
                     Name: decodeURIComponent($row.eq(1).find(">a").attr('href')).replace(/\/$/, ""),
-                    Path: decodeURIComponent($row.eq(1).find(">a").attr('href')),
+                    Path: $row.eq(1).find(">a").attr('href'),
                     IsDir: decodeURIComponent($row.eq(1).find(">a").attr('href')).search(/\/$/) !== -1,
                     LastModified: $row.eq(2).text().trim(),
                     Size: $row.eq(3).text().trim() == "-" ? "" : $row.eq(3).text().trim(),
