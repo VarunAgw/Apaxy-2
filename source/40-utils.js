@@ -125,18 +125,6 @@ String.prototype.replaceAll = function (search, replacement) {
     return target.split(search).join(replacement);
 };
 
-function get_resource(path) {
-    return new Promise(function (resolve) {
-        $.ajax({
-            url: apaxy2_base_url + path,
-            success: function (data) {
-                data = data.replaceAll("%apaxy2_base_url%", apaxy2_base_url);
-                return resolve(data);
-            }
-        });
-    });
-}
-
 function inject_css(code) {
     var s = document.createElement("style");
     s.type = "text/css";
