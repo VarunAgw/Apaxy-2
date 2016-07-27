@@ -120,7 +120,6 @@ function get_icon(type) {
     }
 }
 
-
 String.prototype.replaceAll = function (search, replacement) {
     var target = this;
     return target.split(search).join(replacement);
@@ -129,11 +128,31 @@ String.prototype.replaceAll = function (search, replacement) {
 function get_resource(path) {
     return new Promise(function (resolve) {
         $.ajax({
-            url: chrome.extension.getURL(path),
+            url: apaxy2_base_url + path,
             success: function (data) {
-                data = data.replaceAll("__MSG_@@extension_id__", chrome.i18n.getMessage("@@extension_id"));
+                data = data.replaceAll("%apaxy2_base_url%", apaxy2_base_url);
                 return resolve(data);
             }
         });
     });
+}
+
+function inject_css(code) {
+    var s = document.createElement("style");
+    s.type = "text/css";
+    s.innerHTML = code;
+    document.head.appendChild(s);
+
+}
+
+function inject_script(code, body) {
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.innerHTML = code;
+    if (true === body) {
+        document.body.appendChild(s);
+    } else {
+        document.head.appendChild(s);
+    }
+
 }

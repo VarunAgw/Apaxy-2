@@ -16,7 +16,7 @@
     "content_scripts": [
         {
             "matches": ["*://*/*"],
-            "js": ["content_scripts/jquery-2.1.4.js", "content_scripts/keycode.js", "content_scripts/file_types.js", "content_scripts/helper.js", "content_scripts/main.js"],
+            "js": ["content_script.js"],
             "run_at": "document_end"
         }
     ],
