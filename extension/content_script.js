@@ -179,295 +179,286 @@ if (typeof KeyCode == "undefined") {
     }
 }
 var file_types = {
-    "7z": "archive",
-    "bz2": "archive",
-    "cab": "archive",
-    "gz": "archive",
-    "tar": "archive",
-    "aac": "audio",
-    "aif": "audio",
-    "aifc": "audio",
-    "aiff": "audio",
-    "ape": "audio",
-    "au": "audio",
-    "flac": "audio",
-    "iff": "audio",
-    "m4a": "audio",
-    "mid": "audio",
-    "mp3": "audio",
-    "mpa": "audio",
-    "ra": "audio",
-    "wav": "audio",
-    "wma": "audio",
-    "f4a": "audio",
-    "f4b": "audio",
-    "oga": "audio",
-    "ogg": "audio",
-    "xm": "audio",
-    "it": "audio",
-    "s3m": "audio",
-    "mod": "audio",
-    "bin": "bin",
-    "hex": "bin",
-    "bmp": "bmp",
-    "c": "c",
-    "xlsx": "calc",
-    "xlsm": "calc",
-    "xltx": "calc",
-    "xltm": "calc",
-    "xlam": "calc",
-    "xlr": "calc",
-    "xls": "calc",
-    "csv": "calc",
-    "iso": "cd",
-    "cpp": "cpp",
-    "css": "css",
-    "sass": "css",
-    "scss": "css",
-    "deb": "deb",
-    "doc": "doc",
-    "docx": "doc",
-    "docm": "doc",
-    "dot": "doc",
-    "dotx": "doc",
-    "dotm": "doc",
-    "log": "doc",
-    "msg": "doc",
-    "odt": "doc",
-    "pages": "doc",
-    "rtf": "doc",
-    "tex": "doc",
-    "wpd": "doc",
-    "wps": "doc",
-    "svg": "draw",
-    "svgz": "draw",
-    "ai": "eps",
-    "eps": "eps",
-    "exe": "exe",
-    "gif": "gif",
-    "h": "h",
-    "html": "html",
-    "xhtml": "html",
-    "shtml": "html",
-    "htm": "html",
-    "URL": "html",
-    "url": "html",
-    "ico": "ico",
-    "jar": "java",
-    "jpg": "jpg",
-    "jpeg": "jpg",
-    "jpe": "jpg",
-    "js": "js",
-    "json": "js",
-    "md": "markdown",
-    "pkg": "package",
-    "dmg": "package",
-    "pdf": "pdf",
-    "php": "php",
-    "phtml": "php",
-    "m3u": "playlist",
-    "m3u8": "playlist",
-    "pls": "playlist",
-    "pls8": "playlist",
-    "png": "png",
-    "ps": "ps",
-    "psd": "psd",
-    "py": "py",
-    "rar": "rar",
-    "rb": "rb",
-    "rpm": "rpm",
-    "rss": "rss",
-    "bat": "script",
-    "cmd": "script",
-    "sh": "script",
-    "sql": "sql",
-    "tiff": "tiff",
-    "tif": "tiff",
-    "txt": "text",
-    "nfo": "text",
-    "asf": "video",
-    "asx": "video",
-    "avi": "video",
-    "flv": "video",
-    "mkv": "video",
-    "mov": "video",
-    "mp4": "video",
-    "mpg": "video",
-    "rm": "video",
-    "srt": "video",
-    "swf": "video",
-    "vob": "video",
-    "wmv": "video",
-    "m4v": "video",
-    "f4v": "video",
-    "f4p": "video",
-    "ogv": "video",
-    "xml": "xml",
-    "zip": "zip"
-}
+    ".7z": "archive.png",
+    ".bz2": "archive.png",
+    ".cab": "archive.png",
+    ".gz": "archive.png",
+    ".tar": "archive.png",
+    ".aac": "audio.png",
+    ".aif": "audio.png",
+    ".aifc": "audio.png",
+    ".aiff": "audio.png",
+    ".ape": "audio.png",
+    ".au": "audio.png",
+    ".flac": "audio.png",
+    ".iff": "audio.png",
+    ".m4a": "audio.png",
+    ".mid": "audio.png",
+    ".mp3": "audio.png",
+    ".mpa": "audio.png",
+    ".ra": "audio.png",
+    ".wav": "audio.png",
+    ".wma": "audio.png",
+    ".f4a": "audio.png",
+    ".f4b": "audio.png",
+    ".oga": "audio.png",
+    ".ogg": "audio.png",
+    ".xm": "audio.png",
+    ".it": "audio.png",
+    ".s3m": "audio.png",
+    ".mod": "audio.png",
+    ".bin": "bin.png",
+    ".hex": "bin.png",
+    ".bmp": "bmp.png",
+    ".c": "c.png",
+    ".xlsx": "calc.png",
+    ".xlsm": "calc.png",
+    ".xltx": "calc.png",
+    ".xltm": "calc.png",
+    ".xlam": "calc.png",
+    ".xlr": "calc.png",
+    ".xls": "calc.png",
+    ".csv": "calc.png",
+    ".iso": "cd.png",
+    ".cpp": "cpp.png",
+    ".css": "css.png",
+    ".sass": "css.png",
+    ".scss": "css.png",
+    ".deb": "deb.png",
+    ".doc": "doc.png",
+    ".docx": "doc.png",
+    ".docm": "doc.png",
+    ".dot": "doc.png",
+    ".dotx": "doc.png",
+    ".dotm": "doc.png",
+    ".log": "doc.png",
+    ".msg": "doc.png",
+    ".odt": "doc.png",
+    ".pages": "doc.png",
+    ".rtf": "doc.png",
+    ".tex": "doc.png",
+    ".wpd": "doc.png",
+    ".wps": "doc.png",
+    ".svg": "draw.png",
+    ".svgz": "draw.png",
+    ".ai": "eps.png",
+    ".eps": "eps.png",
+    ".exe": "exe.png",
+    ".gif": "gif.png",
+    ".h": "h.png",
+    ".html": "html.png",
+    ".xhtml": "html.png",
+    ".shtml": "html.png",
+    ".htm": "html.png",
+    ".URL": "html.png",
+    ".url": "html.png",
+    ".ico": "ico.png",
+    ".jar": "java.png",
+    ".jpg": "jpg.png",
+    ".jpeg": "jpg.png",
+    ".jpe": "jpg.png",
+    ".js": "js.png",
+    ".json": "js.png",
+    ".md": "markdown.png",
+    ".pkg": "package.png",
+    ".dmg": "package.png",
+    ".pdf": "pdf.png",
+    ".php": "php.png",
+    ".phtml": "php.png",
+    ".m3u": "playlist.png",
+    ".m3u8": "playlist.png",
+    ".pls": "playlist.png",
+    ".pls8": "playlist.png",
+    ".png": "png.png",
+    ".ps": "ps.png",
+    ".psd": "psd.png",
+    ".py": "py.png",
+    ".rar": "rar.png",
+    ".rb": "rb.png",
+    ".rpm": "rpm.png",
+    ".rss": "rss.png",
+    ".bat": "script.png",
+    ".cmd": "script.png",
+    ".sh": "script.png",
+    ".sql": "sql.png",
+    ".tiff": "tiff.png",
+    ".tif": "tiff.png",
+    ".txt": "text.png",
+    ".nfo": "text.png",
+    ".asf": "video.png",
+    ".asx": "video.png",
+    ".avi": "video.png",
+    ".flv": "video.png",
+    ".mkv": "video.png",
+    ".mov": "video.png",
+    ".mp4": "video.png",
+    ".mpg": "video.png",
+    ".rm": "video.png",
+    ".srt": "video.png",
+    ".swf": "video.png",
+    ".vob": "video.png",
+    ".wmv": "video.png",
+    ".m4v": "video.png",
+    ".f4v": "video.png",
+    ".f4p": "video.png",
+    ".ogv": "video.png",
+    ".xml": "xml.png",
+    ".zip": "zip"
+};
 var resources = {
   "base.htm": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n    <head>\r\n        <title>Apaxy 2</title>\r\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\r\n    </head>\r\n    <body>\r\n        <div class=\"wrapper wrapper-tree\">\r\n            <table id=\"indexlist\">\r\n                <tr class=\"indexhead\">\r\n                    <th class=\"indexcolicon\"><img src=\"\" alt=\"\" /></th>\r\n                    <th class=\"indexcolname\"><a href=\"#\">Tree</a></th>\r\n                </tr>\r\n                <tr class=\"sample\">\r\n                    <td class=\"indexcolicon\"><img src=\"\" alt=\"\" /></td>\r\n                    <td class=\"indexcolname\"><a href=\"#\"></a></td>\r\n                </tr>\r\n            </table>\r\n        </div>\r\n        <div class=\"wrapper wrapper-listing\">\r\n            <table id=\"indexlist\">\r\n                <tr class=\"indexhead\">\r\n                    <th class=\"indexcolicon\"><img src=\"\" alt=\"\" /></th>\r\n                    <th class=\"indexcolname\"><a href=\"#\">Name</a></th>\r\n                    <th class=\"indexcollastmod\"><a href=\"#\">Last modified</a></th>\r\n                    <th class=\"indexcolsize\"><a href=\"#\">Size</a></th>\r\n                </tr>\r\n                <tr class=\"sample\">\r\n                    <td class=\"indexcolicon\"><img src=\"\" alt=\"\" /></td>\r\n                    <td class=\"indexcolname\"><a href=\"#\"></a></td>\r\n                    <td class=\"indexcollastmod\"></td>\r\n                    <td class=\"indexcolsize\"></td>\r\n                </tr>\r\n            </table>\r\n        </div>\r\n        <span class=\"clear\"></span>\r\n        <div class=\"block\"></div>\r\n        <div class=\"footer\">\r\n            <p><a href=\"https://github.com/VarunAgw/Apaxy-2\">Apaxy 2</a> by <a href=\"https://www.varunagw.com\">Varun Agrawal</a>. Based on <a href=\"https://github.com/AdamWhitcroft/Apaxy\">Apaxy</a> by <a href=\"https://twitter.com/adamwhitcroft\">Adam Whitcroft</a></p>\r\n        </div>\r\n    </body>\r\n</html>\r\n",
   "style.css": "/* open-sans-regular - latin */\r\n@font-face {\r\n    font-family: 'Open Sans';\r\n    font-style: normal;\r\n    font-weight: 400;\r\n    src: local('Open Sans'), local('OpenSans'),\r\n        /* Chrome 26+, Opera 23+, Firefox 39+ */\r\n        url('%baseurl%fonts/open-sans-v13-latin-regular.woff2') format('woff2'),\r\n        /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */\r\n        url('%baseurl%fonts/open-sans-v13-latin-regular.woff') format('woff');\r\n}\r\n\r\n.wrapper-tree{\r\n    max-width:15%;\r\n    float: left;\r\n    display: none;\r\n}\r\n.wrapper-tree th + th {\r\n    width: auto;\r\n}\r\n\r\n.wrapper-listing{\r\n    max-width: 60%\r\n}\r\n\r\ntr {\r\n    height: 40px;\r\n}\r\n\r\n.indexcolname a {\r\n    word-break: break-word;\r\n}\r\n\r\nspan.clear {\r\n    clear: both;\r\n}\r\n\r\n.focused .selected {\r\n    outline: rgb(77, 144, 254) auto 5px;\r\n}",
   "style_apaxy.css": "/*------------------------------------*\\\n    Apaxy\n    by @adamwhitcroft\n\n    Theme name: Apaxy\n    Theme author: @adamwhitcroft\n\\*------------------------------------*/\n\n/* Have to use @import for the font, as you can only specify a single stylesheet */\n* {\n\tmargin:0;\n\tpadding:0;\n\t-webkit-box-sizing:border-box;\n\t   -moz-box-sizing:border-box;\n\t       box-sizing: border-box; \n}\n\nhtml {\n\tmin-height:100%;\n\tborder-top:10px solid #ECEEF1;\n\tborder-bottom:10px solid #ECEEF1;\n\tcolor:#61666c;\n\tfont-weight:400;\n\tfont-size:1em;\n\tfont-family:'Open Sans', sans-serif;\n\tline-height:2em;\n}\nbody {\n\tpadding:20px;\n\t-webkit-backface-visibility:hidden;\n}\ncode {\n\tfont-family:consolas,monospace;\t\n}\na {\n\tcolor:#61666c;\n\ttext-decoration:none;\n}\na, img {\n        border:none;\n        outline:none\n}\na:hover {\n\tcolor:#2a2a2a;\n}\n/*------------------------------------*\\\n    Wrapper\n\\*------------------------------------*/\n.wrapper {\n\tmargin:0 auto;\n\tpadding-top:20px;\n\tmax-width:500px;\n}\n/*------------------------------------*\\\n    Demo block\n\\*------------------------------------*/\n.block {\n\tfont-size:.875em;\n\tmargin:20px 0;\n\tpadding:20px;\n\tcolor:#9099A3;\n}\n/*------------------------------------*\\\n    Table (directory listing)\n\\*------------------------------------*/\ntable {\n\twidth:100%;\n\tborder-collapse:collapse;\n\tfont-size:.875em;\n}\ntr {\n\toutline:0;\n\tborder:0;\n}\ntr:hover td {\n\tbackground:#f6f6f6;\n}\nth {\n\ttext-align:left;\n\tfont-size:.75em;\n\tpadding-right:20px;\n}\n/* 2nd Column: Filename */\nth + th {\n\twidth:65%;\n}\n/* 3rd Column: Last Modified */\nth + th + th {\n}\n/* 4th Column: Size */\nth + th + th + th {\n\twidth:5%;\n}\ntr td:first-of-type {\n\tpadding-left:10px;\n\tpadding-right:10px;\n}\ntd {\n\tpadding:5px 0;\n\toutline:0;\n\tborder:0;\n\tborder-bottom:1px solid #edf1f5;\n\tvertical-align:middle;\n\ttext-align:left;\n\t-webkit-transition:background 300ms ease;\n\t   -moz-transition:background 300ms ease;\n\t    -ms-transition:background 300ms ease;\n\t     -o-transition:background 300ms ease;\n\t        transition:background 300ms ease;\n}\ntd a{\n\tdisplay: block;\n}\ntr.parent a[href^=\"/\"] {\n\tcolor:#9099A3;\n}\n\t.parent a[href^=\"/\"]:hover {\n\t\tcolor:#2281d0;\n\t}\n/*------------------------------------*\\\n    Footer\n\\*------------------------------------*/\n.footer {\n\ttext-align:center;\n\tfont-size:.75em;\n}\n"
 }
-function is_directory_listing(content) {
-    return content.search("<title>Index of /") !== -1 &&
-            content.search("<h1>Index of /") !== -1;
-}
-
-function parse_document(content) {
-    var output = [];
-    var body = '<div id="body-mock">' + content.replace(/^[\s\S]*<body.*?>|<\/body>[\s\S]*$/ig, '') + '</div>';
-    var $body = $(body);
-    body = $body[0];
-
-    if (1 == 2) {
-
-    } else if (1 === $body.find(">pre").length && "white" === $body.attr("bgcolor")) {
-        // nginx
-        $body.find(">pre").find(":nth(0)").remove();
-        $body.find(">pre").html($body.find(">pre").html().trim());
-        if ("" === $body.find(">pre").html()) {
-            return output;
-        }
-        $.each($body.find(">pre").html().trim().split("\n"), function (index, row) {
-            $row = $("<span>").html(row);
-            content = $row.contents().eq(1).text().trim().split(/(^.*?(?=  ))|(\d+$)/);
-            output.push({
-                Name: decodeURIComponent($row.find(">a").attr('href')).replace(/\/$/, ""),
-                Path: decodeURIComponent($row.find(">a").attr('href')),
-                IsDir: decodeURIComponent($row.find(">a").attr('href')).search(/\/$/) !== -1,
-                LastModified: content[1],
-                Size: content[1] == "-" ? "" : content[5],
-            });
-        });
-    } else if (1 === $body.find(">pre").length && undefined === $body.attr("bgcolor")) {
-        // Apache (FancyIndexing -HTMLTable)
-        $body.find(">pre").find("hr,:nth(0),:nth(1),:nth(2),:nth(3),:nth(4)").remove();
-        $body.find(">pre").html($body.find(">pre").html().trim());
-        $.each($body.find(">pre").html().split("\n"), function (index, row) {
-            $row = $("<span>").html(row);
-            if ("[PARENTDIR]" === $row.find(">img").attr('alt')) {
-                return;
-            }
-            content = $row.contents().eq(3).text().trim().split(/  /);
-            output.push({
-                Icon: $row.find(">img").attr('src'),
-                Name: decodeURIComponent($row.find(">a").attr('href')).replace(/\/$/, ""),
-                Path: decodeURIComponent($row.find(">a").attr('href')),
-                IsDir: decodeURIComponent($row.find(">a").attr('href')).search(/\/$/) !== -1,
-                LastModified: content[0],
-                Size: content[1] == "-" ? "" : content[1],
-            });
-        });
-
-    } else if (1 === $body.find(">ul").length) {
-        // Apache (-HTMLTable -FancyIndexing)
-        $body.find(">ul>li:not(:has(a:contains(Parent Directory)))").each(function (index, row) {
-            output.push({
-                Name: decodeURIComponent($(row).find(">a").attr('href')).replace(/\/$/, ""),
-                Path: decodeURIComponent($(row).find(">a").attr('href')),
-                IsDir: decodeURIComponent($(row).find(">a").attr('href')).search(/\/$/) !== -1,
-                LastModified: "",
-                Size: "",
-            });
-        });
-
-    } else if (1 === $body.find(">table").length) {
-        // Apache (+HTMLTable +/-FancyIndexing)
-        $rows = $body.find(">table>tbody");
-        $rows.find('>tr').has('>th').remove();
-        $rows.find(">tr:nth(0)").has("img[alt='[PARENTDIR]']").remove();
-        $rows.children().each(function (index, row) {
-            $row = $(row).children();
-            output.push({
-                Icon: $row.eq(0).find(">img").attr('src'),
-                Name: decodeURIComponent($row.eq(1).find(">a").attr('href')).replace(/\/$/, ""),
-                Path: decodeURIComponent($row.eq(1).find(">a").attr('href')),
-                IsDir: decodeURIComponent($row.eq(1).find(">a").attr('href')).search(/\/$/) !== -1,
-                LastModified: $row.eq(2).text().trim(),
-                Size: $row.eq(3).text().trim() == "-" ? "" : $row.eq(3).text().trim(),
-            });
-        });
-    }
-
-    output = sort_rows(output);
-    return output;
-}
-
-function sort_rows(rows) {
-    return rows.sort(function (a, b) {
-        if (a.IsDir && !b.IsDir) {
-            return -1;
-        }
-        if (!a.IsDir && b.IsDir) {
-            return 1;
-        }
-        if (a.IsDir === b.IsDir) {
-            if (a.Name < b.Name) {
+var parser = {
+    is_directory_listing: function (content) {
+        return content.search("<title>Index of /") !== -1 && content.search("<h1>Index of /") !== -1;
+    },
+    sort_rows: function (rows) {
+        return rows.sort(function (a, b) {
+            if (a.IsDir && !b.IsDir) {
                 return -1;
             }
-            if (a.Name > b.Name) {
+            if (!a.IsDir && b.IsDir) {
                 return 1;
             }
+            if (a.IsDir === b.IsDir) {
+                if (a.Name < b.Name) {
+                    return -1;
+                }
+                if (a.Name > b.Name) {
+                    return 1;
+                }
+            }
+        });
+    },
+    parse_document: function (content) {
+        var output = [];
+        var body = '<div id="body-mock">' + content.replace(/^[\s\S]*<body.*?>|<\/body>[\s\S]*$/ig, '') + '</div>';
+        var $body = $(body);
+        body = $body[0];
+
+        if (1 === $body.find(">pre").length && "white" === $body.attr("bgcolor")) {
+            // nginx
+            $body.find(">pre").find(":nth(0)").remove();
+            $body.find(">pre").html($body.find(">pre").html().trim());
+            if ("" === $body.find(">pre").html()) {
+                return output;
+            }
+            $.each($body.find(">pre").html().trim().split("\n"), function (index, row) {
+                $row = $("<span>").html(row);
+                content = $row.contents().eq(1).text().trim().split(/(^.*?(?=  ))|(\d+$)/);
+                output.push({
+                    Name: decodeURIComponent($row.find(">a").attr('href')).replace(/\/$/, ""),
+                    Path: decodeURIComponent($row.find(">a").attr('href')),
+                    IsDir: decodeURIComponent($row.find(">a").attr('href')).search(/\/$/) !== -1,
+                    LastModified: content[1],
+                    Size: content[1] == "-" ? "" : content[5]
+                });
+            });
+        } else if (1 === $body.find(">pre").length && undefined === $body.attr("bgcolor")) {
+            // Apache (FancyIndexing -HTMLTable)
+            $body.find(">pre").find("hr,:nth(0),:nth(1),:nth(2),:nth(3),:nth(4)").remove();
+            $body.find(">pre").html($body.find(">pre").html().trim());
+            $.each($body.find(">pre").html().split("\n"), function (index, row) {
+                $row = $("<span>").html(row);
+                if ("[PARENTDIR]" === $row.find(">img").attr('alt')) {
+                    return;
+                }
+                content = $row.contents().eq(3).text().trim().split(/  /);
+                output.push({
+                    Icon: $row.find(">img").attr('src'),
+                    Name: decodeURIComponent($row.find(">a").attr('href')).replace(/\/$/, ""),
+                    Path: decodeURIComponent($row.find(">a").attr('href')),
+                    IsDir: decodeURIComponent($row.find(">a").attr('href')).search(/\/$/) !== -1,
+                    LastModified: content[0],
+                    Size: content[1] == "-" ? "" : content[1]
+                });
+            });
+
+        } else if (1 === $body.find(">ul").length) {
+            // Apache (-HTMLTable -FancyIndexing)
+            $body.find(">ul>li:not(:has(a:contains(Parent Directory)))").each(function (index, row) {
+                output.push({
+                    Name: decodeURIComponent($(row).find(">a").attr('href')).replace(/\/$/, ""),
+                    Path: decodeURIComponent($(row).find(">a").attr('href')),
+                    IsDir: decodeURIComponent($(row).find(">a").attr('href')).search(/\/$/) !== -1,
+                    LastModified: "",
+                    Size: ""
+                });
+            });
+
+        } else if (1 === $body.find(">table").length) {
+            // Apache (+HTMLTable +/-FancyIndexing)
+            $rows = $body.find(">table>tbody");
+            $rows.find('>tr').has('>th').remove();
+            $rows.find(">tr:nth(0)").has("img[alt='[PARENTDIR]']").remove();
+            $rows.children().each(function (index, row) {
+                $row = $(row).children();
+                output.push({
+                    Icon: $row.eq(0).find(">img").attr('src'),
+                    Name: decodeURIComponent($row.eq(1).find(">a").attr('href')).replace(/\/$/, ""),
+                    Path: decodeURIComponent($row.eq(1).find(">a").attr('href')),
+                    IsDir: decodeURIComponent($row.eq(1).find(">a").attr('href')).search(/\/$/) !== -1,
+                    LastModified: $row.eq(2).text().trim(),
+                    Size: $row.eq(3).text().trim() == "-" ? "" : $row.eq(3).text().trim(),
+                });
+            });
         }
-    });
-}
 
-function get_extension(filename) {
-    var extension = filename.match(/\.([a-z0-9]+)$/);
-    if (null === extension) {
-        extension = "";
-    } else {
-        extension = extension[1];
+        output = this.sort_rows(output);
+        return output;
     }
-    return extension;
-}
+};
 
-function get_icon(type) {
-    if (undefined !== file_types[type]) {
-        return file_types[type] + ".png";
-    } else {
-        return "default" + ".png";
+
+var media = {
+    get_extension: function (filename) {
+        var extension = filename.match(/\.[\w\d]+$/);
+        return (null !== extension ? extension[0] : "");
+    },
+    get_icon: function (filename) {
+        var extension = this.get_extension(filename);
+        return (undefined !== file_types[extension] ? file_types[extension] : "default.png");
+    },
+    get_current_dir: function (url) {
+        var a = document.createElement("a");
+        a.href = url;
+        return a.pathname;
+    },
+    get_parent_dir: function (url) {
+        var a = document.createElement("a");
+        a.href = url;
+        a = a.pathname.split("/");
+        a.splice(-2, 1);
+        return a.join("/") || null;
     }
-}
+};
+
+var utils = {
+    inject_css: function (code) {
+        var s = document.createElement("style");
+        s.type = "text/css";
+        s.innerHTML = code;
+        document.head.appendChild(s);
+
+    },
+    inject_script: function (code, afterBody) {
+        var s = document.createElement("script");
+        s.type = "text/javascript";
+        s.innerHTML = code;
+        if (true === afterBody) {
+            document.body.appendChild(s);
+        } else {
+            document.head.appendChild(s);
+        }
+    }
+};
 
 String.prototype.replaceAll = function (search, replacement) {
     var target = this;
     return target.split(search).join(replacement);
 };
-
-function get_resource(path) {
-    return new Promise(function (resolve) {
-        $.ajax({
-            url: apaxy2_base_url + path,
-            success: function (data) {
-                data = data.replaceAll("%apaxy2_base_url%", apaxy2_base_url);
-                return resolve(data);
-            }
-        });
-    });
-}
-
-function inject_css(code) {
-    var s = document.createElement("style");
-    s.type = "text/css";
-    s.innerHTML = code;
-    document.head.appendChild(s);
-
-}
-
-function inject_script(code, body) {
-    var s = document.createElement("script");
-    s.type = "text/javascript";
-    s.innerHTML = code;
-    if (true === body) {
-        document.body.appendChild(s);
-    } else {
-        document.head.appendChild(s);
-    }
-
-}
 var apaxy2 = {
     baseURL: "chrome-extension://" + chrome.i18n.getMessage("@@extension_id") + "/view/"
 };
@@ -475,33 +466,29 @@ var apaxy2 = {
 jQuery.each(resources, function (key) {
     resources[key] = resources[key].replaceAll("%baseurl%", apaxy2.baseURL);
 });
-if (is_directory_listing(document.documentElement.innerHTML)) {
+if (parser.is_directory_listing(document.documentElement.innerHTML)) {
     window.stop();
 
-    var view_dir = apaxy2.baseURL;
-    var icon_dir = view_dir + "icons/";
+    apaxy2.view_dir = apaxy2.baseURL;
+    apaxy2.icon_dir = apaxy2.view_dir + "icons/";
+    apaxy2.current_dir = media.get_current_dir(document.location.href);
+    apaxy2.parent_dir = media.get_parent_dir(document.location.href);
 
-    var tmp = document.location.pathname.match(/^(.*\/)?([^/]*\/$)/);
-    var parent_dir = (undefined === tmp[1]) ? null : decodeURIComponent(tmp[1]);
-    var current_dir = decodeURIComponent(tmp[2]);
-
-    var rows = parse_document(document.documentElement.outerHTML);
-    rows = sort_rows(rows);
+    var rows = parser.parse_document(document.documentElement.outerHTML);
+    rows = parser.sort_rows(rows);
 
     document.documentElement.innerHTML = resources['base.htm'];
-    inject_css(resources['style_apaxy.css']);
-    inject_css(resources['style.css']);
-
+    utils.inject_css(resources['style_apaxy.css']);
+    utils.inject_css(resources['style.css']);
     $("title").text("Index of " + document.location.pathname + " by Apaxy 2");
 
     var $sample_row = $('.wrapper-listing tr.sample').detach().removeClass("sample");
-
-    if (parent_dir !== null) {
+    if (apaxy2.parent_dir !== null) {
         var $row = $sample_row.clone();
         $row.addClass("parent");
-        $row.find(">td.indexcolicon>img").attr('src', icon_dir + "folder-home.png");
+        $row.find(">td.indexcolicon>img").attr('src', apaxy2.icon_dir + "folder-home.png");
         $row.find(">td.indexcolname>a").text("Parent Directory");
-        $row.find(">td.indexcolname>a").attr("href", parent_dir);
+        $row.find(">td.indexcolname>a").attr("href", apaxy2.parent_dir);
         $(".wrapper-listing #indexlist").append($row);
     }
 
@@ -513,47 +500,45 @@ if (is_directory_listing(document.documentElement.innerHTML)) {
         $row.find(">td.indexcolsize").text(row.Size !== "" ? row.Size : "-");
 
         if (true === row.IsDir) {
-            $row.find(">td.indexcolicon>img").attr('src', icon_dir + "folder.png");
-        } else if ("" !== get_extension(row.Path)) {
-            $row.find(">td.indexcolicon>img").attr('src', icon_dir + get_icon(get_extension(row.Path)));
+            $row.find(">td.indexcolicon>img").attr('src', apaxy2.icon_dir + "folder.png");
+        } else if ("" !== media.get_extension(row.Path)) {
+            $row.find(">td.indexcolicon>img").attr('src', apaxy2.icon_dir + media.get_icon(row.Path));
         } else {
-            $row.find(">td.indexcolicon>img").attr('src', icon_dir + "default.png");
+            $row.find(">td.indexcolicon>img").attr('src', apaxy2.icon_dir + "default.png");
         }
 
         $(".wrapper-listing #indexlist").append($row);
     });
 
-    if (null !== parent_dir) {
-        $.get(parent_dir, function (response) {
-            if (is_directory_listing(response)) {
-                var rows = parse_document(response);
-                var $sample_row = $('.wrapper-tree tr.sample').detach().removeClass("sample");
 
-                var $row = $sample_row.clone();
-                $row.addClass("parent");
-                $row.find(">td.indexcolicon>img").attr('src', icon_dir + "folder-home.png");
-                $row.find(">td.indexcolname>a").text("Parent Directory");
-                $row.find(">td.indexcolname>a").attr("href", parent_dir);
-                $(".wrapper-tree #indexlist").append($row);
+    (null !== apaxy2.parent_dir) && $.get(apaxy2.parent_dir, function (response) {
+        if (parser.is_directory_listing(response)) {
+            var rows = parser.parse_document(response);
+            var $sample_row = $('.wrapper-tree tr.sample').detach().removeClass("sample");
 
-                $.each(rows, function (index, row) {
-                    if (true === row.IsDir) {
-                        var $row = $sample_row.clone();
+            var $row = $sample_row.clone();
+            $row.addClass("parent");
+            $row.find(">td.indexcolicon>img").attr('src', apaxy2.icon_dir + "folder-home.png");
+            $row.find(">td.indexcolname>a").text("Parent Directory");
+            $row.find(">td.indexcolname>a").attr("href", apaxy2.parent_dir);
+            $(".wrapper-tree #indexlist").append($row);
 
-                        if (current_dir === row.Path) {
-                            $row.find(">td.indexcolname>a").html($("<b>").text(row.Name));
-                        } else {
-                            $row.find(">td.indexcolname>a").text(row.Name);
-                        }
-                        $row.find(">td.indexcolicon>img").attr('src', icon_dir + "folder.png");
-                        $row.find(">td.indexcolname>a").attr("href", parent_dir + row.Path);
-                        $(".wrapper-tree #indexlist").append($row);
+            $.each(rows, function (index, row) {
+                if (true === row.IsDir) {
+                    var $row = $sample_row.clone();
+                    if (apaxy2.current_dir === row.Path) {
+                        $row.find(">td.indexcolname>a").html($("<b>").text(row.Name));
+                    } else {
+                        $row.find(">td.indexcolname>a").text(row.Name);
                     }
-                });
-                $(".wrapper-tree").css("display", "block");
-            }
-        });
-    }
+                    $row.find(">td.indexcolicon>img").attr('src', apaxy2.icon_dir + "folder.png");
+                    $row.find(">td.indexcolname>a").attr("href", apaxy2.parent_dir + row.Path);
+                    $(".wrapper-tree #indexlist").append($row);
+                }
+            });
+            $(".wrapper-tree").css("display", "block");
+        }
+    });
 
     if ($(".wrapper-listing tr:has(td)").length > 0) {
         $(".wrapper-listing table").addClass("focused");
