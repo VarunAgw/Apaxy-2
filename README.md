@@ -7,7 +7,7 @@ https://chrome.google.com/webstore/detail/apaxy-2/pjkfelmkpdpainlidpcaaceahloelj
 ### Apache Web Server
 Add this code in Apache auto index configuration.
 
-```IndexHeadInsert "<script defer src='https://cdn.rawgit.com/VarunAgw/Apaxy-2/master/plugin/apaxy_2.min.js'></script>"```
+```IndexHeadInsert "<script defer src='https://varunagw.github.io/Apaxy-2/plugin/apaxy_2.min.js'></script>"```
 
 ### Nginx
 
