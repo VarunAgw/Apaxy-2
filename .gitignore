@@ -1,6 +1,7 @@
 nbproject
 node_modules/
 source/.tmp/
+plugin/
 extension/
 !extension/icons/
 !extension/view/.keep
