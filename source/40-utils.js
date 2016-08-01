@@ -22,7 +22,7 @@ var parser = {
     },
     parse_document: function (content) {
         var output = [];
-        var body = '<div id="body-mock">' + content.replace(/^[\s\S]*<body.*?>|<\/body>[\s\S]*$/ig, '') + '</div>';
+        var body = '<div' + content.match('<body(.*?)>')[1] + '>' + content.replace(/^[\s\S]*<body.*?>|<\/body>[\s\S]*$/ig, '') + '</div>';
         var $body = $(body);
         body = $body[0];
 
