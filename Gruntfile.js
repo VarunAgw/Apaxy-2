@@ -36,13 +36,16 @@ module.exports = function (grunt) {
     resources['style.css'] = resources['style.css']
             .replace('%open-sans-v14-latin-regular.eot%', '%baseurl%fonts/open-sans-v14-latin-regular.eot')
             .replace('%open-sans-v14-latin-regular.eot?#iefix%', '%baseurl%fonts/open-sans-v14-latin-regular.eot?#iefix')
-            .replace('%open-sans-v14-latin-regular.woff2%', '%baseurl%fonts/open-sans-v14-latin-regular.woff2')
             .replace('%open-sans-v14-latin-regular.woff%', '%baseurl%fonts/open-sans-v14-latin-regular.woff')
             .replace('%open-sans-v14-latin-regular.ttf%', '%baseurl%fonts/open-sans-v14-latin-regular.ttf')
             .replace('%open-sans-v14-latin-regular.svg#OpenSans%', '%baseurl%fonts/open-sans-v14-latin-regular.svg#OpenSans');
 
     if (undefined === task || 'extension' === task) {
       var resources_extension = utils.clone_json(resources);
+
+      resources_extension['style.css'] = resources_extension['style.css']
+              .replace('%open-sans-v14-latin-regular.woff2%', '%baseurl%fonts/open-sans-v14-latin-regular.woff2');
+
       grunt.file.write('source/.tmp/30-resources_extension.js', utils.json_to_js('resources', resources_extension));
     }
 
