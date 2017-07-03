@@ -62,7 +62,7 @@ module.exports = function (grunt) {
       },
       extension: {
         src: [
-          'source/00-jquery-2.1.4.min.js',
+          'source/00-jquery-3.2.1.js',
           'source/10-keycode.js',
           'source/20-file_types.js',
           'source/.tmp/30-resources_extension.js',
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
       },
       plugin: {
         src: [
-          'source/00-jquery-2.1.4.min.js',
+          'source/00-jquery-3.2.1.js',
           'source/10-keycode.js',
           'source/20-file_types.js',
           'source/.tmp/30-resources_plugin.js',
