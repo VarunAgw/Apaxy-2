@@ -79,6 +79,11 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
       var $selection;
       $selection = $("table.focused .selected");
 
+      if (KeyCode(e, KeyCode.C, "c")) {
+        utils.copyTextToClipboard($selection.find('a').prop('href'));
+        e.preventDefault();
+      }
+
       if (KeyCode(e, KeyCode.RETURN, /^c?$/)) {
         if (KeyCode(e, [], "c")) {
           window.open($selection.find('a').prop('href'));
