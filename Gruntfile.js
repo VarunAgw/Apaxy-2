@@ -33,13 +33,16 @@ module.exports = function (grunt) {
     resources['style.css'] = utils.read_file('source/view/style.css');
     resources['style_apaxy.css'] = utils.read_file('source/view/style_apaxy.css');
 
+    resources['style.css'] = resources['style.css']
+            .replace('%open-sans-v14-latin-regular.eot%', '%baseurl%fonts/open-sans-v14-latin-regular.eot')
+            .replace('%open-sans-v14-latin-regular.eot?#iefix%', '%baseurl%fonts/open-sans-v14-latin-regular.eot?#iefix')
+            .replace('%open-sans-v14-latin-regular.woff2%', '%baseurl%fonts/open-sans-v14-latin-regular.woff2')
+            .replace('%open-sans-v14-latin-regular.woff%', '%baseurl%fonts/open-sans-v14-latin-regular.woff')
+            .replace('%open-sans-v14-latin-regular.ttf%', '%baseurl%fonts/open-sans-v14-latin-regular.ttf')
+            .replace('%open-sans-v14-latin-regular.svg#OpenSans%', '%baseurl%fonts/open-sans-v14-latin-regular.svg#OpenSans');
+
     if (undefined === task || 'extension' === task) {
       var resources_extension = utils.clone_json(resources);
-
-      resources_extension['style.css'] = resources_extension['style.css']
-              .replace('%open-sans-v13-latin-regular.woff2%', '%baseurl%fonts/open-sans-v13-latin-regular.woff2')
-              .replace('%open-sans-v13-latin-regular.woff%', '%baseurl%fonts/open-sans-v13-latin-regular.woff');
-
       grunt.file.write('source/.tmp/30-resources_extension.js', utils.json_to_js('resources', resources_extension));
     }
 
@@ -47,8 +50,7 @@ module.exports = function (grunt) {
       var resources_plugin = utils.clone_json(resources);
 
       resources_plugin['style.css'] = resources_plugin['style.css']
-              .replace('%open-sans-v13-latin-regular.woff2%', 'data:font/woff2;base64,' + utils.read_file('source/fonts/open-sans-v13-latin-regular.woff2', true))
-              .replace('%open-sans-v13-latin-regular.woff%', 'data:application/x-font-woff;base64,' + utils.read_file('source/fonts/open-sans-v13-latin-regular.woff', true));
+              .replace('%open-sans-v14-latin-regular.woff2%', 'data:font/woff2;base64,' + utils.read_file('source/fonts/open-sans-v14-latin-regular.woff2', true));
 
       grunt.file.write('source/.tmp/30-resources_plugin.js', utils.json_to_js('resources', resources_plugin));
     }
@@ -103,7 +105,8 @@ module.exports = function (grunt) {
       },
       plugin: {
         files: [
-          {cwd: 'source/icons', src: '**', dest: 'builds/development/apache_plugin/icons/'}
+          {cwd: 'source/icons', src: '**', dest: 'builds/development/apache_plugin/icons/'},
+          {cwd: 'source/fonts/', src: '**', dest: 'builds/development/apache_plugin/fonts/'}
         ],
         ignoreInDest: "apache_2.min.js",
       },
