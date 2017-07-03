@@ -2,8 +2,8 @@ if (typeof KeyCode == "undefined") {
     /**
      * A fancier way to parse JS keydown events
      * Author: Varun Agrawal <Varun@VarunAgw.com>
-     * Source: https://gist.github.com/VarunAgw/935e8457d470fab222bf48bf0fc1c70d
-     * Version: 1.2
+     * Source: https://gist.github.com/VarunAgw/58ab41fd3d48ac51808c76617842dccf#file-keycode-js
+     * Version: 1.3
      * Last Updated: 23-July-2016
      * 
      * @param {object}             event:             Just forward the event
