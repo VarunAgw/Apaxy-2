@@ -123,5 +123,5 @@ var file_types = {
     ".f4p": "video.png",
     ".ogv": "video.png",
     ".xml": "xml.png",
-    ".zip": "zip"
+    ".zip": "zip.png"
 };
