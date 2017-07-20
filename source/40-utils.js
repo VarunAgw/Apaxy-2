@@ -27,7 +27,8 @@ var parser = {
     });
   },
   are_valid_rows: function (rows) {
-    for (var row of rows) {
+    for (var index in rows) {
+      var row = rows[index];
       if (row.Path === undefined || row.Path === null) {
         return false;
       }
