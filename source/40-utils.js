@@ -91,14 +91,25 @@ var parser = {
       $rows.find(">tr:nth(0)").has("img[alt='[PARENTDIR]']").remove();
       $rows.children().each(function (index, row) {
         $row = $(row).children();
-        output.push({
-          Icon: $row.eq(0).find(">img").attr('src'),
-          Name: decodeURIComponent($row.eq(1).find(">a").attr('href')).replace(/\/$/, ""),
-          Path: $row.eq(1).find(">a").attr('href'),
-          IsDir: decodeURIComponent($row.eq(1).find(">a").attr('href')).search(/\/$/) !== -1,
-          LastModified: $row.eq(2).text().trim(),
-          Size: $row.eq(3).text().trim() == "-" ? "" : $row.eq(3).text().trim(),
-        });
+        if (1 === $row.children().length) {
+          // Some sites like https://downloads.openwrt.org/snapshots/trunk/arm64/
+          output.push({
+            Name: decodeURIComponent($row.find(">a").attr('href')).replace(/\/$/, ""),
+            Path: $row.find(">a").attr('href'),
+            IsDir: decodeURIComponent($row.find(">a").attr('href')).search(/\/$/) !== -1,
+            LastModified: "",
+            Size: ""
+          });
+        } else {
+          output.push({
+            Icon: $row.eq(0).find(">img").attr('src'),
+            Name: decodeURIComponent($row.eq(1).find(">a").attr('href')).replace(/\/$/, ""),
+            Path: $row.eq(1).find(">a").attr('href'),
+            IsDir: decodeURIComponent($row.eq(1).find(">a").attr('href')).search(/\/$/) !== -1,
+            LastModified: $row.eq(2).text().trim(),
+            Size: $row.eq(3).text().trim() == "-" ? "" : $row.eq(3).text().trim(),
+          });
+        }
       });
     }
 
