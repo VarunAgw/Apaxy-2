@@ -20,6 +20,12 @@ var parser = {
       }
     });
   },
+  filter_rows: function (rows) {
+    // Remove rows like ../ ./ / (parent directories)
+    return rows.filter(function (row) {
+      return (!(/^\.*\/$/.test(row.Path)));
+    });
+  },
   are_valid_rows: function (rows) {
     for (var row of rows) {
       if (row.Path === undefined || row.Path === null) {
@@ -115,6 +121,7 @@ var parser = {
 
 
     output = this.sort_rows(output);
+    output = this.filter_rows(output);
     return this.are_valid_rows(output) ? output : false;
   }
 };
