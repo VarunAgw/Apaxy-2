@@ -23,7 +23,7 @@ var parser = {
   filter_rows: function (rows) {
     // Remove rows like ../ ./ / (parent directories)
     return rows.filter(function (row) {
-      return (!(/^\.*\/$/.test(row.Path)));
+      return (!(/^\.*\/?$/.test(row.Path)));
     });
   },
   are_valid_rows: function (rows) {
