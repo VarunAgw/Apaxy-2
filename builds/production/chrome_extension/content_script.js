@@ -10581,6 +10581,21 @@ var parser = {
       }
     });
   },
+  filter_rows: function (rows) {
+    // Remove rows like ../ ./ / (parent directories)
+    return rows.filter(function (row) {
+      return (!(/^\.*\/$/.test(row.Path)));
+    });
+  },
+  are_valid_rows: function (rows) {
+    for (var index in rows) {
+      var row = rows[index];
+      if (row.Path === undefined || row.Path === null) {
+        return false;
+      }
+    }
+    return true;
+  },
   parse_document: function (content) {
     var output = [];
     var body = '<div' + content.match('<body(.*?)>')[1] + '>' + content.replace(/^[\s\S]*<body.*?>|<\/body>[\s\S]*$/ig, '') + '</div>';
@@ -10644,19 +10659,32 @@ var parser = {
       $rows.find(">tr:nth(0)").has("img[alt='[PARENTDIR]']").remove();
       $rows.children().each(function (index, row) {
         $row = $(row).children();
-        output.push({
-          Icon: $row.eq(0).find(">img").attr('src'),
-          Name: decodeURIComponent($row.eq(1).find(">a").attr('href')).replace(/\/$/, ""),
-          Path: $row.eq(1).find(">a").attr('href'),
-          IsDir: decodeURIComponent($row.eq(1).find(">a").attr('href')).search(/\/$/) !== -1,
-          LastModified: $row.eq(2).text().trim(),
-          Size: $row.eq(3).text().trim() == "-" ? "" : $row.eq(3).text().trim(),
-        });
+        if (1 === $row.children().length) {
+          // Some sites like https://downloads.openwrt.org/snapshots/trunk/arm64/
+          output.push({
+            Name: decodeURIComponent($row.find(">a").attr('href')).replace(/\/$/, ""),
+            Path: $row.find(">a").attr('href'),
+            IsDir: decodeURIComponent($row.find(">a").attr('href')).search(/\/$/) !== -1,
+            LastModified: "",
+            Size: ""
+          });
+        } else {
+          output.push({
+            Icon: $row.eq(0).find(">img").attr('src'),
+            Name: decodeURIComponent($row.eq(1).find(">a").attr('href')).replace(/\/$/, ""),
+            Path: $row.eq(1).find(">a").attr('href'),
+            IsDir: decodeURIComponent($row.eq(1).find(">a").attr('href')).search(/\/$/) !== -1,
+            LastModified: $row.eq(2).text().trim(),
+            Size: $row.eq(3).text().trim() == "-" ? "" : $row.eq(3).text().trim(),
+          });
+        }
       });
     }
 
+
     output = this.sort_rows(output);
-    return output;
+    output = this.filter_rows(output);
+    return this.are_valid_rows(output) ? output : false;
   }
 };
 
@@ -10793,7 +10821,9 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
   apaxy2.parent_dir = media.get_parent_dir(document.location.href);
 
   var rows = parser.parse_document(document.documentElement.outerHTML);
-  rows = parser.sort_rows(rows);
+  if (false === rows) {
+    throw new Error("Failed processing this site. Please contact developer with the link to this url to report the issue.");
+  }
 
   document.documentElement.innerHTML = resources['base.htm'];
   utils.inject_css(resources['style_apaxy.css']);
