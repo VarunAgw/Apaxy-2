@@ -7,7 +7,9 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
   apaxy2.parent_dir = media.get_parent_dir(document.location.href);
 
   var rows = parser.parse_document(document.documentElement.outerHTML);
-  rows = parser.sort_rows(rows);
+  if (false === rows) {
+    throw new Error("Failed processing this site. Please contact developer with the link to this url to report the issue.");
+  }
 
   document.documentElement.innerHTML = resources['base.htm'];
   utils.inject_css(resources['style_apaxy.css']);

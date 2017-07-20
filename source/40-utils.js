@@ -20,6 +20,14 @@ var parser = {
       }
     });
   },
+  are_valid_rows: function (rows) {
+    for (var row of rows) {
+      if (row.Path === undefined || row.Path === null) {
+        return false;
+      }
+    }
+    return true;
+  },
   parse_document: function (content) {
     var output = [];
     var body = '<div' + content.match('<body(.*?)>')[1] + '>' + content.replace(/^[\s\S]*<body.*?>|<\/body>[\s\S]*$/ig, '') + '</div>';
@@ -94,8 +102,9 @@ var parser = {
       });
     }
 
+
     output = this.sort_rows(output);
-    return output;
+    return this.are_valid_rows(output) ? output : false;
   }
 };
 
