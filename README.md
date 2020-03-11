@@ -13,3 +13,14 @@ Add this code in Apache auto index configuration.
 ### Nginx
 
 Code snippet will be available till the end of 2025. Bookmark this page for now.
+
+### Development
+
+- Load `development/chrome_extension` as chrome extension in development mode.
+- Run `grunt watch` in terminal
+- Code :)
+
+### Tests
+
+- Load development chrome extension
+- Visit tests/*.htm in your web browser

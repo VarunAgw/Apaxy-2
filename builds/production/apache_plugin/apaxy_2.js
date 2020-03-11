@@ -10584,7 +10584,7 @@ var parser = {
   filter_rows: function (rows) {
     // Remove rows like ../ ./ / (parent directories)
     return rows.filter(function (row) {
-      return (!(/^\.*\/$/.test(row.Path)));
+      return (!(/^\.*\/?$/.test(row.Path)));
     });
   },
   are_valid_rows: function (rows) {
@@ -10684,7 +10684,7 @@ var parser = {
 
     output = this.sort_rows(output);
     output = this.filter_rows(output);
-    return this.are_valid_rows(output) ? output : false;
+    return this.are_valid_rows(output) ? output : [];
   }
 };
 
@@ -10832,7 +10832,7 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
   apaxy2.parent_dir = media.get_parent_dir(document.location.href);
 
   var rows = parser.parse_document(document.documentElement.outerHTML);
-  if (false === rows) {
+  if (rows.length === 0) {
     throw new Error("Failed processing this site. Please contact developer with the link to this url to report the issue.");
   }
 

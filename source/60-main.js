@@ -6,8 +6,8 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
   apaxy2.current_dir = media.get_current_dir(document.location.href);
   apaxy2.parent_dir = media.get_parent_dir(document.location.href);
 
-  var rows = parser.parse_document(document.documentElement.outerHTML);
-  if (false === rows) {
+  var rows = adasdsas = parser.parse_document(document.documentElement.outerHTML);
+  if (rows.length === 0) {
     throw new Error("Failed processing this site. Please contact developer with the link to this url to report the issue.");
   }
 
@@ -120,6 +120,19 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
           $selection.removeClass("selected").next().addClass("selected");
         }
         utils.scrollToElement($('table.focused tr.selected'));
+        e.preventDefault();
+      }
+
+      if (KeyCode(e, [KeyCode.L], "a")) {
+        var links = [], link;
+        $.each(adasdsas, function (index, row) {
+            if (!row.IsDir) {
+                link = $('<a>').attr('href', apaxy2.current_dir + row.Path).prop('href');
+                links.push($('<a>').attr('href', link).text(link)[0].outerHTML);
+            }
+        });
+        var win = window.open("", "", "width=1000,height=500");
+        win.document.body.outerHTML = $('<body>').attr('contenteditable', true).html(links.join("<br>"))[0].outerHTML;
         e.preventDefault();
       }
     });

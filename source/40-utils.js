@@ -123,7 +123,7 @@ var parser = {
 
     output = this.sort_rows(output);
     output = this.filter_rows(output);
-    return this.are_valid_rows(output) ? output : false;
+    return this.are_valid_rows(output) ? output : [];
   }
 };
 
