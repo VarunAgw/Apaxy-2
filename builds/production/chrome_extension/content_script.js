@@ -10254,6 +10254,60 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
+/*
+ * @version    1.4.0
+ * @date       2015-10-26
+ * @stability  3 - Stable
+ * @author     Lauri Rooden (https://github.com/litejs/natural-compare-lite)
+ * @license    MIT License
+ */
+
+
+var naturalCompare = function (a, b) {
+    var i, codeA
+        , codeB = 1
+        , posA = 0
+        , posB = 0
+        , alphabet = String.alphabet;
+
+    function getCode(str, pos, code) {
+        if (code) {
+            for (i = pos; code = getCode(str, i), code < 76 && code > 65;) ++i;
+            return +str.slice(pos - 1, i)
+        }
+        code = alphabet && alphabet.indexOf(str.charAt(pos));
+        return code > -1 ? code + 76 : ((code = str.charCodeAt(pos) || 0), code < 45 || code > 127) ? code
+            : code < 46 ? 65               // -
+                : code < 48 ? code - 1
+                    : code < 58 ? code + 18        // 0-9
+                        : code < 65 ? code - 11
+                            : code < 91 ? code + 11        // A-Z
+                                : code < 97 ? code - 37
+                                    : code < 123 ? code + 5        // a-z
+                                        : code - 63
+    }
+
+
+    if ((a += "") != (b += "")) for (; codeB;) {
+        codeA = getCode(a, posA++);
+        codeB = getCode(b, posB++);
+
+        if (codeA < 76 && codeB < 76 && codeA > 66 && codeB > 66) {
+            codeA = getCode(a, posA, posA);
+            codeB = getCode(b, posB, posA = i);
+            posB = i
+        }
+
+        if (codeA != codeB) return (codeA < codeB) ? -1 : 1
+    }
+    return 0
+};
+
+try {
+    module.exports = naturalCompare;
+} catch (e) {
+    String.naturalCompare = naturalCompare;
+}
 if (typeof KeyCode == "undefined") {
     /**
      * A fancier way to parse JS keydown events
@@ -10571,14 +10625,7 @@ var parser = {
       if (!a.IsDir && b.IsDir) {
         return 1;
       }
-      if (a.IsDir === b.IsDir) {
-        if (a.Name < b.Name) {
-          return -1;
-        }
-        if (a.Name > b.Name) {
-          return 1;
-        }
-      }
+      return String.naturalCompare(a.Name.toLowerCase(), b.Name.toLowerCase());
     });
   },
   filter_rows: function (rows) {
@@ -10695,7 +10742,7 @@ var media = {
     return (null !== extension ? extension[0] : "");
   },
   get_icon: function (filename) {
-    var extension = this.get_extension(filename);
+    var extension = this.get_extension(filename).toLowerCase();
     return (undefined !== file_types[extension] ? file_types[extension] : "default.png");
   },
   get_current_dir: function (url) {
@@ -10820,7 +10867,7 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
   apaxy2.current_dir = media.get_current_dir(document.location.href);
   apaxy2.parent_dir = media.get_parent_dir(document.location.href);
 
-  var rows = parser.parse_document(document.documentElement.outerHTML);
+  var rows = adasdsas = parser.parse_document(document.documentElement.outerHTML);
   if (rows.length === 0) {
     throw new Error("Failed processing this site. Please contact developer with the link to this url to report the issue.");
   }
@@ -10875,6 +10922,7 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
         if (true === row.IsDir) {
           var $row = $sample_row.clone();
           if (apaxy2.current_dir === apaxy2.parent_dir + row.Path) {
+            $("title").text("Index of " + row.Name.replace(/(\.|-|_)/gm, " ") + " by Apaxy 2"); // Quick Hack
             $row.addClass('selected').find(">td.indexcolname>a").html($("<b>").text(row.Name));
           } else {
             $row.find(">td.indexcolname>a").text(row.Name);
@@ -10891,13 +10939,33 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
   if ($(".wrapper-listing tr:has(td)").length > 0) {
     $(".wrapper-listing table").addClass("focused");
     $(".wrapper-listing tr:has(td)").eq(0).addClass("selected");
+
+    $(document).mousemove(function (event) {
+      var $this = $(event.target);
+      if ($this.closest('tr:has(td)').length === 1 && !$this.closest('tr:has(td)').hasClass("selected")) {
+        $('.focused').removeClass('focused');
+        $(".selected").removeClass("selected");
+
+        $this.closest('table').addClass('focused');
+        $this.closest('tr:has(td)').addClass('selected');
+      }
+    });
+
     $(document).on("keydown", function (e) {
       var $selection;
       $selection = $("table.focused .selected");
 
-      if (KeyCode(e, KeyCode.C, "c")) {
-        utils.copyTextToClipboard($selection.find('a').prop('href'));
-        e.preventDefault();
+      if ($(".tm_embedded_link").length === 0) {
+        if (KeyCode(e, KeyCode.C, "c")) {
+          // utils.copyTextToClipboard($selection.find('a').text());
+          prompt("Copy", $selection.find('a').text());
+          e.preventDefault();
+        }
+        if (KeyCode(e, KeyCode.C, "a")) {
+          // utils.copyTextToClipboard($selection.find('a').prop('href'));
+          prompt("Copy", $selection.find('a').prop('href'));
+          e.preventDefault();
+        }
       }
 
       if (KeyCode(e, KeyCode.RETURN, /^c?$/)) {
@@ -10934,6 +11002,24 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
           $selection.removeClass("selected").next().addClass("selected");
         }
         utils.scrollToElement($('table.focused tr.selected'));
+        e.preventDefault();
+      }
+
+      if (KeyCode(e, [KeyCode.C], "s")) {
+        var links = [], link;
+        var dirs =[];
+        $.each(adasdsas, function (index, row) {
+          if (!row.IsDir) {
+            link = $('<a>').attr('href', apaxy2.current_dir + row.Path).prop('href');
+            links.push($('<a>').attr('href', link).text(link)[0].outerHTML);
+          } else {
+            link = $('<a>').attr('href', apaxy2.current_dir + row.Path).prop('href');
+            dirs.push($('<a>').attr('href', link).text(link)[0].outerHTML);
+          }
+        });
+        var win = window.open("", "", "width=1000,height=500");
+        var html = "<ul><li>" +  links.join("<li>") + "<hr>" + dirs.join("<li>") + "</ul>";
+        win.document.body.outerHTML = $('<body>').attr('contenteditable', true).html(html)[0].outerHTML;
         e.preventDefault();
       }
     });

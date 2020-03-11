@@ -61,6 +61,7 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
         if (true === row.IsDir) {
           var $row = $sample_row.clone();
           if (apaxy2.current_dir === apaxy2.parent_dir + row.Path) {
+            $("title").text("Index of " + row.Name.replace(/(\.|-|_)/gm, " ") + " by Apaxy 2"); // Quick Hack
             $row.addClass('selected').find(">td.indexcolname>a").html($("<b>").text(row.Name));
           } else {
             $row.find(">td.indexcolname>a").text(row.Name);
@@ -77,13 +78,33 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
   if ($(".wrapper-listing tr:has(td)").length > 0) {
     $(".wrapper-listing table").addClass("focused");
     $(".wrapper-listing tr:has(td)").eq(0).addClass("selected");
+
+    $(document).mousemove(function (event) {
+      var $this = $(event.target);
+      if ($this.closest('tr:has(td)').length === 1 && !$this.closest('tr:has(td)').hasClass("selected")) {
+        $('.focused').removeClass('focused');
+        $(".selected").removeClass("selected");
+
+        $this.closest('table').addClass('focused');
+        $this.closest('tr:has(td)').addClass('selected');
+      }
+    });
+
     $(document).on("keydown", function (e) {
       var $selection;
       $selection = $("table.focused .selected");
 
-      if (KeyCode(e, KeyCode.C, "c")) {
-        utils.copyTextToClipboard($selection.find('a').prop('href'));
-        e.preventDefault();
+      if ($(".tm_embedded_link").length === 0) {
+        if (KeyCode(e, KeyCode.C, "c")) {
+          // utils.copyTextToClipboard($selection.find('a').text());
+          prompt("Copy", $selection.find('a').text());
+          e.preventDefault();
+        }
+        if (KeyCode(e, KeyCode.C, "a")) {
+          // utils.copyTextToClipboard($selection.find('a').prop('href'));
+          prompt("Copy", $selection.find('a').prop('href'));
+          e.preventDefault();
+        }
       }
 
       if (KeyCode(e, KeyCode.RETURN, /^c?$/)) {
@@ -123,16 +144,21 @@ if (parser.is_directory_listing(document.documentElement.innerHTML)) {
         e.preventDefault();
       }
 
-      if (KeyCode(e, [KeyCode.L], "a")) {
+      if (KeyCode(e, [KeyCode.C], "s")) {
         var links = [], link;
+        var dirs =[];
         $.each(adasdsas, function (index, row) {
-            if (!row.IsDir) {
-                link = $('<a>').attr('href', apaxy2.current_dir + row.Path).prop('href');
-                links.push($('<a>').attr('href', link).text(link)[0].outerHTML);
-            }
+          if (!row.IsDir) {
+            link = $('<a>').attr('href', apaxy2.current_dir + row.Path).prop('href');
+            links.push($('<a>').attr('href', link).text(link)[0].outerHTML);
+          } else {
+            link = $('<a>').attr('href', apaxy2.current_dir + row.Path).prop('href');
+            dirs.push($('<a>').attr('href', link).text(link)[0].outerHTML);
+          }
         });
         var win = window.open("", "", "width=1000,height=500");
-        win.document.body.outerHTML = $('<body>').attr('contenteditable', true).html(links.join("<br>"))[0].outerHTML;
+        var html = "<ul><li>" +  links.join("<li>") + "<hr>" + dirs.join("<li>") + "</ul>";
+        win.document.body.outerHTML = $('<body>').attr('contenteditable', true).html(html)[0].outerHTML;
         e.preventDefault();
       }
     });

@@ -10,14 +10,7 @@ var parser = {
       if (!a.IsDir && b.IsDir) {
         return 1;
       }
-      if (a.IsDir === b.IsDir) {
-        if (a.Name < b.Name) {
-          return -1;
-        }
-        if (a.Name > b.Name) {
-          return 1;
-        }
-      }
+      return String.naturalCompare(a.Name.toLowerCase(), b.Name.toLowerCase());
     });
   },
   filter_rows: function (rows) {
@@ -134,7 +127,7 @@ var media = {
     return (null !== extension ? extension[0] : "");
   },
   get_icon: function (filename) {
-    var extension = this.get_extension(filename);
+    var extension = this.get_extension(filename).toLowerCase();
     return (undefined !== file_types[extension] ? file_types[extension] : "default.png");
   },
   get_current_dir: function (url) {

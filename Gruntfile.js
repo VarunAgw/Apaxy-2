@@ -68,6 +68,7 @@ module.exports = function (grunt) {
       extension: {
         src: [
           'source/00-jquery-3.2.1.js',
+          'source/01-min.natural-compare.js',
           'source/10-keycode.js',
           'source/20-file_types.js',
           'source/.tmp/30-resources_extension.js',
@@ -80,6 +81,7 @@ module.exports = function (grunt) {
       plugin: {
         src: [
           'source/00-jquery-3.2.1.js',
+          'source/01-min.natural-compare.js',
           'source/10-keycode.js',
           'source/20-file_types.js',
           'source/.tmp/30-resources_plugin.js',
@@ -151,7 +153,6 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['init', 'concat', 'sync:extension', 'sync:plugin']);
   grunt.registerTask('extension', ['init:extension', 'concat:extension', 'sync:extension']);
   grunt.registerTask('plugin', ['init:plugin', 'concat:plugin', 'sync:plugin']);
-
   grunt.registerTask('build', ['default', 'sync:build', 'uglify:build']);
 
 };
