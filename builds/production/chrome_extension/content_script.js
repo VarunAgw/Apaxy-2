@@ -10615,7 +10615,7 @@ var resources = {
 }
 var parser = {
   is_directory_listing: function (content) {
-    return content.search("<title>Index of /") !== -1 && content.search("<h1>Index of /") !== -1;
+    return content.search("<title>Index of /") !== -1 && content.search("<h1>Index of /") !== -1 || content.search("<title>Directory listing for /") !== -1 && content.search("<h1>Directory listing for /") !== -1;
   },
   sort_rows: function (rows) {
     return rows.sort(function (a, b) {
